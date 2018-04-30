@@ -1,5 +1,7 @@
 package fr.unilim.dut.spaceInvaders;
 
+import fr.unilim.dut.spaceInvaders.utils.HorsEspaceJeuException;
+
 public class SpaceInvaders {
 
 	private static final String MARQUE_FIN_LIGNE = "\n";
@@ -48,9 +50,15 @@ public class SpaceInvaders {
 	}
 
 	public void positionnerUnNouveauVaisseau(int x, int y) {
-		if (x >= longueur) {
-			throw new HorsEspaceJeuException("Vous êtes en dehors de l'espace jeu");
-		} 
-		this.vaisseau = new Vaisseau (x,y);
+
+		if (  !estDansEspaceJeu(x, y) )
+			throw new HorsEspaceJeuException("La position du vaisseau est en dehors de l'espace jeu");
+
+		vaisseau = new Vaisseau(x, y); 
+
+	}
+
+	private boolean estDansEspaceJeu(int x, int y) {
+		return ((x >= 0) && (x < longueur)) && ((y >= 0) && (y < hauteur));
 	}
 }
