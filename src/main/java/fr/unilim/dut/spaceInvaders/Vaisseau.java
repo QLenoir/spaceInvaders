@@ -21,6 +21,6 @@ public class Vaisseau {
 	}
 	
 	public int abscisse() {
-		return int
+		return 0;
 	}
 }
