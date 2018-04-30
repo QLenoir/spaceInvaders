@@ -14,13 +14,4 @@ public class Vaisseau {
 		return (this.x==x) && (this.y==y);
 	}
 
-	public void seDeplacerVersLaDroite() {
-	}
-	
-	public void seDeplacerVersLaGauche() {
-	}
-	
-	public int abscisse() {
-		return int
-	}
 }
