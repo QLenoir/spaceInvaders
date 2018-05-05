@@ -48,7 +48,7 @@ public class SpaceInvaders {
 	private boolean aUnVaisseau() {
 		return this.vaisseau!=null;
 	}
-
+ 
 	public void positionnerUnNouveauVaisseau(int x, int y) {
 
 		if (  !estDansEspaceJeu(x, y) )

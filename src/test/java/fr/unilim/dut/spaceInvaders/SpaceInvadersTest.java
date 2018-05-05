@@ -31,7 +31,7 @@ public class SpaceInvadersTest {
 				"...............\n" + 
 				"...............\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
 	}
-
+ 
 	@Test
 	public void test_unNouveauVaisseauEstCorrectementPositionneDansEspaceJeu() {
 		spaceinvaders.positionnerUnNouveauVaisseau(7,9);
