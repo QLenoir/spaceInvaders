@@ -15,12 +15,14 @@ public class Vaisseau {
 	}
 
 	public void seDeplacerVersLaDroite() {
+		this.x = this.x + 1 ;
 	}
 	
 	public void seDeplacerVersLaGauche() {
 	}
 	
+	
 	public int abscisse() {
-		return 0;
+        return this.x;
 	}
 }
