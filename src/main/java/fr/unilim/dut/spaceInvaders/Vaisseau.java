@@ -63,5 +63,14 @@ public class Vaisseau {
 	   this.origine.changerAbscisse(x);
 	   this.origine.changerOrdonnee(y);
    }
+   
+   public int longueur() {
+	   return this.longueur();
+   }
+   
+   public int hauteur() {
+	   return this.hauteur();
+   }
+   
 
 }
