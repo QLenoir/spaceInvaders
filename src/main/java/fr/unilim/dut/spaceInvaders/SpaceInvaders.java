@@ -67,7 +67,7 @@ public class SpaceInvaders {
 	}
 
 
-	 public void positionnerUnNouveauVaisseau(Dimension dimension, Position position) {
+	 public void positionnerUnNouveauVaisseau(Dimension dimension, Position position, int vitesse) {
 			
 			int x = position.abscisse();
 			int y = position.ordonnee();
