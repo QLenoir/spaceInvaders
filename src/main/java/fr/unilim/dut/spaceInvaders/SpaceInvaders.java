@@ -62,8 +62,14 @@ public class SpaceInvaders {
 	}
 
 	public void deplacerVaisseauVersLaDroite() {
-		if (this.vaisseau.abscisseLaPlusADroite() < (longueur - 1))
+		if (this.vaisseau.abscisseLaPlusADroite() < (longueur - 1)) {
 			this.vaisseau.seDeplacerVersLaDroite();
+		
+			if (!estDansEspaceJeu(vaisseau.abscisseLaPlusADroite(), vaisseau.ordonneeLaPlusHaute())) {
+				vaisseau.positionner(longueur - vaisseau.longueur(), vaisseau.ordonneeLaPlusHaute());
+			}
+		}
+		
 	}
 
 

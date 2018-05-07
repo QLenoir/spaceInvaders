@@ -35,11 +35,11 @@ public class Vaisseau {
 	   return (abscisseLaPlusAGauche() <= x) && (x <= abscisseLaPlusADroite());
     }
 
-    private int ordonneeLaPlusBasse() {
+    public int ordonneeLaPlusBasse() {
 	    return this.origine.ordonnee() - this.dimension.hauteur() + 1;
     }
 
-    private int ordonneeLaPlusHaute() {
+    public int ordonneeLaPlusHaute() {
 	   return this.origine.ordonnee();
    }
 
