@@ -65,11 +65,11 @@ public class Vaisseau {
    }
    
    public int longueur() {
-	   return this.longueur();
+	   return this.dimension.longueur;
    }
    
    public int hauteur() {
-	   return this.hauteur();
+	   return this.dimension.hauteur;
    }
    
 
