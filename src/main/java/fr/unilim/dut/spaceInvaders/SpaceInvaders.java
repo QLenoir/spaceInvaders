@@ -83,7 +83,6 @@ public class SpaceInvaders {
 			if (!estDansEspaceJeu(x, y - hauteurVaisseau + 1))
 				throw new DebordementEspaceJeuException("Le vaisseau déborde de l'espace jeu vers le bas à cause de sa hauteur");
 
-			vaisseau = new Vaisseau(longueurVaisseau, hauteurVaisseau);
-			vaisseau.positionner(x, y);
+			vaisseau = new Vaisseau(dimension,position,vitesse);
 		}
 }
