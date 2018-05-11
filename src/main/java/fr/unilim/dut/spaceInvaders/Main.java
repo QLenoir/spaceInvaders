@@ -10,6 +10,7 @@ public class Main {
 		SpaceInvaders jeu = new SpaceInvaders(Constante.ESPACEJEU_LONGUEUR,Constante.ESPACEJEU_HAUTEUR);
 		DessinSpaceInvaders aff = new DessinSpaceInvaders(jeu);
 
+		
 		jeu.initialiserJeu();
 		// classe qui lance le moteur de jeu generique
 		MoteurGraphique moteur = new MoteurGraphique(jeu, aff);
