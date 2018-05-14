@@ -55,7 +55,7 @@ public class SpaceInvaders implements Jeu {
 	private boolean aUnVaisseauQuiOccupeLaPosition(int x, int y) {
 		return this.aUnVaisseau() && this.vaisseau.occupeLaPosition(x, y);
 	}
-	
+
 	private boolean aUnEnvahisseurQuiOccupeLaPosition(int x, int y) {
 		return this.aUnEnvahisseur() && this.envahisseur.occupeLaPosition(x, y);
 	}
@@ -144,17 +144,28 @@ public class SpaceInvaders implements Jeu {
 			tirerUnMissile(new Dimension(Constante.MISSILE_LONGUEUR, Constante.MISSILE_HAUTEUR),
 					Constante.MISSILE_VITESSE);
 		}
-		
+
 		if (this.aUnMissile()) {
 			this.deplacerMissile();
 		}
-		
+
 		this.deplacerEnvahisseur();
 	}
 
 
-	private void deplacerEnvahisseur() {
-		this.envahisseur.deplacerHorizontalementVers(Direction.DROITE_ECRAN);
+	public void deplacerEnvahisseur() {
+		if (this.envahisseur.abscisseLaPlusADroite()==this.longueur-1) {
+			this.envahisseur.setDirectionAGauche(true);
+		} else if (this.envahisseur.abscisseLaPlusAGauche()==0){
+			this.envahisseur.setDirectionAGauche(false);
+		}
+		
+
+		if (this.envahisseur.DirectionAGauche()) {
+			this.envahisseur.deplacerHorizontalementVers(Direction.GAUCHE_ECRAN);
+		} else {
+			this.envahisseur.deplacerHorizontalementVers(Direction.DROITE_ECRAN);
+		}
 	}
 
 	@Override
@@ -180,7 +191,7 @@ public class SpaceInvaders implements Jeu {
 	}
 
 	public void positionnerUnNouveauEnvahisseur(Dimension dimension, Position position, int vitesse) {
-		
+
 		int x = position.abscisse();
 		int y = position.ordonnee();
 
