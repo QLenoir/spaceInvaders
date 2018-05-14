@@ -8,7 +8,9 @@ public enum Direction {
 	DROITE (1),
 
 	HAUT_ECRAN(-1),
-	BAS_ECRAN(1);
+	BAS_ECRAN(1),
+	GAUCHE_ECRAN(-1),
+	DROITE_ECRAN(1);
 
 	private int valeur;
 
