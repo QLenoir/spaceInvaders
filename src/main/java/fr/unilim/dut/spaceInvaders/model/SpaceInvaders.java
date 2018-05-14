@@ -60,7 +60,7 @@ public class SpaceInvaders implements Jeu {
 		return this.aUnEnvahisseur() && this.envahisseur.occupeLaPosition(x, y);
 	}
 
-	private boolean aUnEnvahisseur() {
+	public boolean aUnEnvahisseur() {
 		return this.envahisseur!=null;
 	}
 
@@ -127,7 +127,12 @@ public class SpaceInvaders implements Jeu {
 	public void initialiserJeu() {
 		Position positionVaisseau = new Position(this.longueur/2,this.hauteur-1);
 		Dimension dimensionVaisseau = new Dimension(Constante.VAISSEAU_LONGUEUR, Constante.VAISSEAU_HAUTEUR);
-		positionnerUnNouveauVaisseau(dimensionVaisseau, positionVaisseau, Constante.VAISSEAU_VITESSE);
+		this.positionnerUnNouveauVaisseau(dimensionVaisseau, positionVaisseau, Constante.VAISSEAU_VITESSE);
+		
+		Position positionEnvahisseur = new Position(this.longueur-this.longueur+50,this.hauteur-this.hauteur+50);
+		Dimension dimensionEnvahisseur = new Dimension(Constante.ENVAHISSEUR_LONGUEUR,Constante.ENVAHISSEUR_HAUTEUR);
+		this.positionnerUnNouveauEnvahisseur(dimensionEnvahisseur, positionEnvahisseur, Constante.ENVAHISSEUR_VITESSE);
+		this.envahisseur.setDirectionAGauche(true);
 	}
 
 	@Override
@@ -148,19 +153,20 @@ public class SpaceInvaders implements Jeu {
 		if (this.aUnMissile()) {
 			this.deplacerMissile();
 		}
-
-		this.deplacerEnvahisseur();
+		if (this.aUnEnvahisseur()) {
+			this.deplacerEnvahisseur();
+		}
 	}
 
 
 	public void deplacerEnvahisseur() {
-		
 		verifierDebordementEnvahisseur();
-	
+
 		deplacerEnvahisseurDansLeBonSens();
 	}
 
 	private void deplacerEnvahisseurDansLeBonSens() {
+		
 		if (this.envahisseur.DirectionAGauche()) {
 			this.envahisseur.deplacerHorizontalementVers(Direction.GAUCHE_ECRAN);
 		} else {
@@ -169,9 +175,10 @@ public class SpaceInvaders implements Jeu {
 	}
 
 	private void verifierDebordementEnvahisseur() {
+		
 		if (this.envahisseur.abscisseLaPlusADroite()==this.longueur-1) {
 			this.envahisseur.setDirectionAGauche(true);
-		} else if (this.envahisseur.abscisseLaPlusAGauche()==0){
+		} else if (this.envahisseur.abscisseLaPlusAGauche()<=0){
 			this.envahisseur.setDirectionAGauche(false);
 		}
 	}
@@ -215,5 +222,9 @@ public class SpaceInvaders implements Jeu {
 			throw new DebordementEspaceJeuException("L'envahisseur déborde de l'espace jeu vers le bas à cause de sa hauteur");
 
 		this.envahisseur = new Envahisseur(dimension,position,vitesse);
+	}
+
+	public Envahisseur envahisseur() {
+		return envahisseur;
 	}
 }

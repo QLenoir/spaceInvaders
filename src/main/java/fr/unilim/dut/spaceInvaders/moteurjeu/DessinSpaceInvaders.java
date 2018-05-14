@@ -21,6 +21,13 @@ public class DessinSpaceInvaders implements DessinJeu {
 		dessinerUnVaisseau(crayon);
 		if (spaceInvaders.aUnMissile())
 		dessinerUnMssile(crayon);
+		if (spaceInvaders.aUnEnvahisseur())
+		dessinerUnEnvahisseur(crayon);
+	}
+
+	private void dessinerUnEnvahisseur(Graphics2D crayon) {
+		crayon.setColor(Color.GREEN);
+		crayon.fillRect(this.spaceInvaders.envahisseur().abscisseLaPlusAGauche(),this.spaceInvaders.envahisseur().ordonneeLaPlusBasse(),this.spaceInvaders.envahisseur().dimension().longueur(),this.spaceInvaders.envahisseur().dimension().hauteur());
 	}
 
 	private void dessinerUnVaisseau(Graphics2D crayon) {
