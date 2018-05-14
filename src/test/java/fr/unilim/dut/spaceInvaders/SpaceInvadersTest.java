@@ -6,6 +6,9 @@ import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
 
+import fr.unilim.dut.spaceInvaders.model.Dimension;
+import fr.unilim.dut.spaceInvaders.model.Position;
+import fr.unilim.dut.spaceInvaders.model.SpaceInvaders;
 import fr.unilim.dut.spaceInvaders.utils.DebordementEspaceJeuException;
 import fr.unilim.dut.spaceInvaders.utils.HorsEspaceJeuException;
 import fr.unilim.dut.spaceInvaders.utils.MissileException;
