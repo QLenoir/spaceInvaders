@@ -152,14 +152,14 @@ public class SpaceInvaders implements Jeu {
 					Constante.MISSILE_VITESSE);
 		}
 
-		if (this.aUnMissile()) {
-			this.deplacerMissile();
-		}
-		if (this.aUnEnvahisseur()) {
-			this.deplacerEnvahisseur();
-		}
+		deplacerAutomatiquementSprite();
 		
 		this.collision.detecterCollision(envahisseur, missile);
+		
+		detecterDestructionSprite();
+	}
+
+	private void detecterDestructionSprite() {
 		
 		if (this.aUnEnvahisseur() && this.envahisseur.estDetruit) {
 			this.enleverEnvahisseur();
@@ -167,6 +167,15 @@ public class SpaceInvaders implements Jeu {
 		
 		if(this.aUnMissile() && this.missile.estDetruit) {
 			this.enleverMissile();
+		}
+	}
+
+	private void deplacerAutomatiquementSprite() {
+		if (this.aUnMissile()) {
+			this.deplacerMissile();
+		}
+		if (this.aUnEnvahisseur()) {
+			this.deplacerEnvahisseur();
 		}
 	}
 
@@ -230,7 +239,7 @@ public class SpaceInvaders implements Jeu {
 
 		if (!estDansEspaceJeu(x + longueurEnvahisseur - 1, y))
 			throw new DebordementEspaceJeuException("L'envahisseur déborde de l'espace jeu vers la droite à cause de sa longueur");
-		if (!estDansEspaceJeu(x, y - hauteurEnvahisseur + 1))
+		if (!estDansEspaceJeu(x, y - hauteurEnvahisseur + 1)) 
 			throw new DebordementEspaceJeuException("L'envahisseur déborde de l'espace jeu vers le bas à cause de sa hauteur");
 
 		this.envahisseur = new Envahisseur(dimension,position,vitesse);

@@ -22,10 +22,44 @@ public class CollisionTest {
 	}
 
 	@Test
-	public void test_envahisseur_disparait_apres_collision_avec_missile () {
+	public void test_envahisseur_disparait_apres_collision_avec_missile_de_face () {
 		
 		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(7,2),new Position(5,9), 1);
 		spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(2,2),new Position(8,1), 1);
+		
+		spaceinvaders.tirerUnMissile(new Dimension(3,2),2);
+		spaceinvaders.deplacerMissile();
+		spaceinvaders.deplacerMissile();
+		spaceinvaders.deplacerMissile();
+
+		collision.detecterCollision(spaceinvaders.envahisseur(),spaceinvaders.missile());
+		
+		if (spaceinvaders.envahisseur().estDetruit()) {
+			spaceinvaders.enleverEnvahisseur();
+		}
+		
+		if (spaceinvaders.missile().estDetruit()) {
+			spaceinvaders.enleverMissile();
+		}
+		
+		assertEquals("" +
+				"...............\n" + 
+				"...............\n" +
+				"...............\n" + 
+				"...............\n" +
+				"...............\n" +
+				"...............\n" + 
+				"...............\n" +
+				"...............\n" + 
+				".....VVVVVVV...\n" + 
+				".....VVVVVVV...\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
+	}
+	
+	@Test
+	public void test_envahisseur_disparait_apres_collision_avec_missile_de_cote () {
+		
+		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(7,2),new Position(5,9), 1);
+		spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(2,2),new Position(6,1), 1);
 		
 		spaceinvaders.tirerUnMissile(new Dimension(3,2),2);
 		spaceinvaders.deplacerMissile();
