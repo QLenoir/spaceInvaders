@@ -13,10 +13,12 @@ public class SpaceInvaders implements Jeu {
 	Vaisseau vaisseau; 
 	Missile missile;
 	Envahisseur envahisseur;
+	Collision collision;
 
 	public SpaceInvaders(int longueur, int hauteur) {
 		this.longueur = longueur;
 		this.hauteur = hauteur;
+		this.collision = new Collision(this);
 	}
 
 	@Override
@@ -134,7 +136,7 @@ public class SpaceInvaders implements Jeu {
 		this.positionnerUnNouveauEnvahisseur(dimensionEnvahisseur, positionEnvahisseur, Constante.ENVAHISSEUR_VITESSE);
 		this.envahisseur.setDirectionAGauche(true);
 	}
-
+ 
 	@Override
 	public void evoluer(Commande commandeUser) {
 		if (commandeUser.gauche) {
@@ -155,6 +157,16 @@ public class SpaceInvaders implements Jeu {
 		}
 		if (this.aUnEnvahisseur()) {
 			this.deplacerEnvahisseur();
+		}
+		
+		this.collision.detecterCollision(envahisseur, missile);
+		
+		if (this.aUnEnvahisseur() && this.envahisseur.estDetruit) {
+			this.enleverEnvahisseur();
+		}
+		
+		if(this.aUnMissile() && this.missile.estDetruit) {
+			this.enleverMissile();
 		}
 	}
 

@@ -16,7 +16,7 @@ public class Collision {
 						sprite1.estDetruit(true);
 						sprite2.estDetruit(true);
 					}
-				} 
+				}  
 			}
 		}
 	}
