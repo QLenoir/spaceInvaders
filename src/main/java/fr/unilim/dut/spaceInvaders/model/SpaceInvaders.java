@@ -10,7 +10,7 @@ public class SpaceInvaders implements Jeu {
 
 	int longueur;
 	int hauteur;
-	Vaisseau vaisseau;
+	Vaisseau vaisseau; 
 	Missile missile;
 	Envahisseur envahisseur;
 
@@ -226,5 +226,13 @@ public class SpaceInvaders implements Jeu {
 
 	public Envahisseur envahisseur() {
 		return envahisseur;
+	}
+	
+	public void enleverEnvahisseur() {
+		this.envahisseur = null;
+	}
+	
+	public void enleverMissile() {
+		this.missile = null;
 	}
 }

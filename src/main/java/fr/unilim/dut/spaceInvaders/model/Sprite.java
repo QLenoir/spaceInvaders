@@ -5,12 +5,14 @@ public abstract class Sprite {
 	protected Position origine;
 	protected Dimension dimension;
 	protected int vitesse;
+	protected boolean estDetruit;
 
 	public Sprite(Position origine, Dimension dimension, int vitesse) {
 		super();
 		this.origine = origine;
 		this.dimension = dimension;
 		this.vitesse = vitesse;
+		this.estDetruit = false;
 	}
 	
 	public Sprite() {
@@ -72,5 +74,13 @@ public abstract class Sprite {
 
 	public void deplacerHorizontalementVers(Direction direction) {
 		this.origine.changerAbscisse(this.origine.abscisse() + direction.valeur()*vitesse);
+	}
+	
+	public void estDetruit(boolean b) {
+		this.estDetruit = b;
+	}
+	
+	public boolean estDetruit() {
+		return this.estDetruit;
 	}
 }

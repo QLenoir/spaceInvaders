@@ -414,7 +414,7 @@ public class SpaceInvadersTest {
 				"...............\n" + 
 				".....VVVVVVV...\n" + 
 				".....VVVVVVV...\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
-	}
+	} 
 
 	@Test
 	public void test_EnvahisseurChangeDeSens_QuandIlCommenceASortirDeEspaceJeuAGauche() {
