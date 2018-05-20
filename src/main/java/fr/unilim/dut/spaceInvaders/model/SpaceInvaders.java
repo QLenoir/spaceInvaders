@@ -130,13 +130,13 @@ public class SpaceInvaders implements Jeu {
 		Position positionVaisseau = new Position(this.longueur/2,this.hauteur-1);
 		Dimension dimensionVaisseau = new Dimension(Constante.VAISSEAU_LONGUEUR, Constante.VAISSEAU_HAUTEUR);
 		this.positionnerUnNouveauVaisseau(dimensionVaisseau, positionVaisseau, Constante.VAISSEAU_VITESSE);
-		
+
 		Position positionEnvahisseur = new Position(this.longueur-this.longueur+50,this.hauteur-this.hauteur+50);
 		Dimension dimensionEnvahisseur = new Dimension(Constante.ENVAHISSEUR_LONGUEUR,Constante.ENVAHISSEUR_HAUTEUR);
 		this.positionnerUnNouveauEnvahisseur(dimensionEnvahisseur, positionEnvahisseur, Constante.ENVAHISSEUR_VITESSE);
 		this.envahisseur.setDirectionAGauche(true);
 	}
- 
+
 	@Override
 	public void evoluer(Commande commandeUser) {
 		if (commandeUser.gauche) {
@@ -153,18 +153,18 @@ public class SpaceInvaders implements Jeu {
 		}
 
 		deplacerAutomatiquementSprite();
-		
+
 		this.collision.detecterCollision(envahisseur, missile);
-		
+
 		detecterDestructionSprite();
 	}
 
 	private void detecterDestructionSprite() {
-		
+
 		if (this.aUnEnvahisseur() && this.envahisseur.estDetruit) {
 			this.enleverEnvahisseur();
 		}
-		
+
 		if(this.aUnMissile() && this.missile.estDetruit) {
 			this.enleverMissile();
 		}
@@ -187,7 +187,7 @@ public class SpaceInvaders implements Jeu {
 	}
 
 	private void deplacerEnvahisseurDansLeBonSens() {
-		
+
 		if (this.envahisseur.DirectionAGauche()) {
 			this.envahisseur.deplacerHorizontalementVers(Direction.GAUCHE_ECRAN);
 		} else {
@@ -196,7 +196,7 @@ public class SpaceInvaders implements Jeu {
 	}
 
 	private void verifierDebordementEnvahisseur() {
-		
+
 		if (this.envahisseur.abscisseLaPlusADroite()==this.longueur-1) {
 			this.envahisseur.setDirectionAGauche(true);
 		} else if (this.envahisseur.abscisseLaPlusAGauche()<=0){
@@ -206,8 +206,12 @@ public class SpaceInvaders implements Jeu {
 
 	@Override
 	public boolean etreFini() {
+		if (!this.aUnEnvahisseur()) {
+			return true;
+		} else {
+			return false;
+		}
 
-		return false;
 	}
 
 	public void tirerUnMissile(Dimension dimensionMissile, int vitesseMissile) {
@@ -248,11 +252,11 @@ public class SpaceInvaders implements Jeu {
 	public Envahisseur envahisseur() {
 		return envahisseur;
 	}
-	
+
 	public void enleverEnvahisseur() {
 		this.envahisseur = null;
 	}
-	
+
 	public void enleverMissile() {
 		this.missile = null;
 	}
