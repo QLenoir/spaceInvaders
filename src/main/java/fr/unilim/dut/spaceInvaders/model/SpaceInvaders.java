@@ -234,6 +234,10 @@ public class SpaceInvaders implements Jeu {
 
 		this.missiles.add(this.vaisseau.tirerUnMissile(dimensionMissile,vitesseMissile));
 
+		verifierChevauchementMissile();
+	}
+
+	private void verifierChevauchementMissile() {
 		Iterator<Missile> iterator = this.missiles().iterator();
 		Iterator<Missile> iterator2 = this.missiles().iterator();
 		Missile missile2 = iterator2.next();
