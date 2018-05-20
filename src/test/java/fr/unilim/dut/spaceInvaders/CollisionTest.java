@@ -2,11 +2,14 @@ package fr.unilim.dut.spaceInvaders;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.Iterator;
+
 import org.junit.Before;
 import org.junit.Test;
 
 import fr.unilim.dut.spaceInvaders.model.Collision;
 import fr.unilim.dut.spaceInvaders.model.Dimension;
+import fr.unilim.dut.spaceInvaders.model.Missile;
 import fr.unilim.dut.spaceInvaders.model.Position;
 import fr.unilim.dut.spaceInvaders.model.SpaceInvaders;
 
@@ -32,14 +35,22 @@ public class CollisionTest {
 		spaceinvaders.deplacerMissile();
 		spaceinvaders.deplacerMissile();
 
-		collision.detecterCollision(spaceinvaders.envahisseur(),spaceinvaders.missile());
+		for (Missile missile : spaceinvaders.missiles()) {
+			collision.detecterCollision(spaceinvaders.envahisseur(),missile);
+		}
+		
 		
 		if (spaceinvaders.envahisseur().estDetruit()) {
 			spaceinvaders.enleverEnvahisseur();
 		}
 		
-		if (spaceinvaders.missile().estDetruit()) {
-			spaceinvaders.enleverMissile();
+		Iterator<Missile> iterator = spaceinvaders.missiles().iterator();
+
+		while (iterator.hasNext()) {
+		    Missile missile = iterator.next();
+
+		    if (missile.estDetruit())
+		        iterator.remove();
 		}
 		
 		assertEquals("" +
@@ -66,15 +77,23 @@ public class CollisionTest {
 		spaceinvaders.deplacerMissile();
 		spaceinvaders.deplacerMissile();
 
-		collision.detecterCollision(spaceinvaders.envahisseur(),spaceinvaders.missile());
+		for (Missile missile : spaceinvaders.missiles()) {
+			collision.detecterCollision(spaceinvaders.envahisseur(),missile);
+		}
 		
 		if (spaceinvaders.envahisseur().estDetruit()) {
 			spaceinvaders.enleverEnvahisseur();
 		}
 		
-		if (spaceinvaders.missile().estDetruit()) {
-			spaceinvaders.enleverMissile();
+		Iterator<Missile> iterator = spaceinvaders.missiles().iterator();
+
+		while (iterator.hasNext()) {
+		    Missile missile = iterator.next();
+
+		    if (missile.estDetruit())
+		        iterator.remove();
 		}
+
 		
 		assertEquals("" +
 				"...............\n" + 
