@@ -2,12 +2,6 @@ package fr.unilim.dut.spaceInvaders.model;
 
 public class Collision {
 
-	private SpaceInvaders spaceInvaders;
-
-	public Collision (SpaceInvaders spaceInvaders) {
-		this.spaceInvaders = spaceInvaders;
-	}
-
 	public void detecterCollision(Sprite sprite1, Sprite sprite2) {
 		if (sprite1!=null && sprite2!=null) {
 			for (int i = sprite1.abscisseLaPlusAGauche(); i <= sprite1.abscisseLaPlusADroite(); i++) {

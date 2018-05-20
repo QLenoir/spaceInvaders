@@ -18,7 +18,7 @@ public class SpaceInvaders implements Jeu {
 	public SpaceInvaders(int longueur, int hauteur) {
 		this.longueur = longueur;
 		this.hauteur = hauteur;
-		this.collision = new Collision(this);
+		this.collision = new Collision();
 	}
 
 	@Override

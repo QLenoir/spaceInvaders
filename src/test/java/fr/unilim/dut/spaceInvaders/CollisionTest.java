@@ -18,7 +18,7 @@ public class CollisionTest {
 	@Before
 	public void initialisation() {
 		spaceinvaders = new SpaceInvaders(15, 10);
-		collision = new Collision(spaceinvaders);
+		collision = new Collision();
 	}
 
 	@Test
