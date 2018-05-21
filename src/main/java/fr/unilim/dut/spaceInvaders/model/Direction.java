@@ -11,7 +11,7 @@ public enum Direction {
 	BAS_ECRAN(1),
 	GAUCHE_ECRAN(-1),
 	DROITE_ECRAN(1);
-
+ 
 	private int valeur;
 
 	private Direction(int valeur) {

@@ -557,7 +557,7 @@ public class SpaceInvadersTest {
 	
 	@Test
 	public void test_Placer_Plusieurs_Envahisseur_ET_Changent_De_Sens_Au_Bord_Espace_De_Jeu_Gauche() {
-
+ 
 		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(7,2),new Position(5,9), 1);
 		spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(2,2),new Position(2,1), 1);
 		spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(2,2),new Position(5,1), 1);
@@ -571,6 +571,29 @@ public class SpaceInvadersTest {
 		assertEquals("" +
 				".EE.EE.........\n" + 
 				".EE.EE.........\n" +
+				"...............\n" + 
+				"...............\n" +
+				"...............\n" +
+				"...............\n" + 
+				"...............\n" +
+				"...............\n" + 
+				".....VVVVVVV...\n" + 
+				".....VVVVVVV...\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
+	}
+	
+	@Test
+	public void test_Placer_Plusieurs_Envahisseur_ET_Changent_De_Sens_Au_Bord_Espace_De_Jeu_Vitesse2() {
+
+		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(7,2),new Position(5,9), 1);
+		spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(2,2),new Position(8,1), 2);
+		spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(2,2),new Position(12,1), 2);
+ 
+		spaceinvaders.deplacerEnvahisseur();
+		spaceinvaders.deplacerEnvahisseur();
+
+		assertEquals("" +
+				"........EE..EE.\n" + 
+				"........EE..EE.\n" +
 				"...............\n" + 
 				"...............\n" +
 				"...............\n" +

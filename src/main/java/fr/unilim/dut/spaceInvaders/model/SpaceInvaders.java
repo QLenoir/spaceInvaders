@@ -149,11 +149,12 @@ public class SpaceInvaders implements Jeu {
 		Dimension dimensionVaisseau = new Dimension(Constante.VAISSEAU_LONGUEUR, Constante.VAISSEAU_HAUTEUR);
 		this.positionnerUnNouveauVaisseau(dimensionVaisseau, positionVaisseau, Constante.VAISSEAU_VITESSE);
 
-		Position positionEnvahisseur = new Position(50,50);
-		Position positionEnvahisseur2 = new Position(150,50);
 		Dimension dimensionEnvahisseur = new Dimension(Constante.ENVAHISSEUR_LONGUEUR,Constante.ENVAHISSEUR_HAUTEUR);
-		this.positionnerUnNouveauEnvahisseur(dimensionEnvahisseur, positionEnvahisseur, Constante.ENVAHISSEUR_VITESSE);
-		this.positionnerUnNouveauEnvahisseur(dimensionEnvahisseur, positionEnvahisseur2, Constante.ENVAHISSEUR_VITESSE);
+		for (int i = 50;i<=650;i=i+90) {
+			Position positionEnvahisseur = new Position(i,50);
+			this.positionnerUnNouveauEnvahisseur(dimensionEnvahisseur, positionEnvahisseur, Constante.ENVAHISSEUR_VITESSE);
+		}
+
 	} 
 
 	@Override
@@ -185,19 +186,15 @@ public class SpaceInvaders implements Jeu {
 
 	private void detecterDestructionSprite() {
 
-		Iterator<Envahisseur> iterator = this.envahisseurs.iterator();
+		Iterator<Envahisseur> iterator = this.envahisseurs().iterator();
 
 		while (iterator.hasNext()) {
-			Envahisseur missile = iterator.next();
+			Envahisseur envahisseur = iterator.next();
 
-			if (missile.ordonneeLaPlusBasse()==0) {
+			if (envahisseur.estDetruit())
 				iterator.remove();
-			} else {
-				missile.deplacerVerticalementVers(Direction.HAUT_ECRAN);
-			}
 		}
-
-
+		
 		Iterator<Missile> iterator2 = this.missiles().iterator();
 
 		while (iterator2.hasNext()) {
@@ -238,7 +235,7 @@ public class SpaceInvaders implements Jeu {
 	private void verifierDebordementEnvahisseur() {
 
 		for (Envahisseur envahisseur : envahisseurs) {
-			if (envahisseur.abscisseLaPlusADroite()==this.longueur-1) {
+			if (envahisseur.abscisseLaPlusADroite()>=this.longueur-1) {
 				for (Envahisseur envahisseur2 : envahisseurs) {
 					envahisseur2.setDirectionAGauche(true);
 				}
