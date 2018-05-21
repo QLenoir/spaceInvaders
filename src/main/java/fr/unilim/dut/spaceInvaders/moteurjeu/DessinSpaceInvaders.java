@@ -4,9 +4,9 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
+import fr.unilim.dut.spaceInvaders.model.Envahisseur;
 import fr.unilim.dut.spaceInvaders.model.Missile;
 import fr.unilim.dut.spaceInvaders.model.SpaceInvaders;
-import fr.unilim.dut.spaceInvaders.moteurjeu.DessinJeu;
 
 public class DessinSpaceInvaders implements DessinJeu {
 
@@ -15,7 +15,7 @@ public class DessinSpaceInvaders implements DessinJeu {
 	public DessinSpaceInvaders (SpaceInvaders spaceInvaders){
 		this.spaceInvaders = spaceInvaders;
 	}
-	
+	 
 	@Override 
 	public void dessiner(BufferedImage image) {
 		Graphics2D crayon = (Graphics2D) image.getGraphics();
@@ -28,7 +28,9 @@ public class DessinSpaceInvaders implements DessinJeu {
 
 	private void dessinerUnEnvahisseur(Graphics2D crayon) {
 		crayon.setColor(Color.GREEN);
-		crayon.fillRect(this.spaceInvaders.envahisseur().abscisseLaPlusAGauche(),this.spaceInvaders.envahisseur().ordonneeLaPlusBasse(),this.spaceInvaders.envahisseur().dimension().longueur(),this.spaceInvaders.envahisseur().dimension().hauteur());
+		for (Envahisseur envahisseur : this.spaceInvaders.envahisseurs()) {
+			crayon.fillRect(envahisseur.abscisseLaPlusAGauche(),envahisseur.ordonneeLaPlusBasse(),envahisseur.dimension().longueur(),envahisseur.dimension().hauteur());
+		}
 	}
 
 	private void dessinerUnVaisseau(Graphics2D crayon) {

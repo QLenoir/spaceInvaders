@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import fr.unilim.dut.spaceInvaders.model.Collision;
 import fr.unilim.dut.spaceInvaders.model.Dimension;
+import fr.unilim.dut.spaceInvaders.model.Envahisseur;
 import fr.unilim.dut.spaceInvaders.model.Missile;
 import fr.unilim.dut.spaceInvaders.model.Position;
 import fr.unilim.dut.spaceInvaders.model.SpaceInvaders;
@@ -23,7 +24,7 @@ public class CollisionTest {
 		spaceinvaders = new SpaceInvaders(15, 10);
 		collision = new Collision();
 	}
-
+ 
 	@Test
 	public void test_envahisseur_disparait_apres_collision_avec_missile_de_face () {
 		
@@ -36,21 +37,28 @@ public class CollisionTest {
 		spaceinvaders.deplacerMissile();
 
 		for (Missile missile : spaceinvaders.missiles()) {
-			collision.detecterCollision(spaceinvaders.envahisseur(),missile);
+			for (Envahisseur envahisseur : spaceinvaders.envahisseurs()) {
+				collision.detecterCollision(envahisseur,missile);
+			}
 		}
 		
 		
-		if (spaceinvaders.envahisseur().estDetruit()) {
-			spaceinvaders.enleverEnvahisseur();
-		}
-		
-		Iterator<Missile> iterator = spaceinvaders.missiles().iterator();
+		Iterator<Envahisseur> iterator = spaceinvaders.envahisseurs().iterator();
 
 		while (iterator.hasNext()) {
-		    Missile missile = iterator.next();
+		    Envahisseur envahisseur = iterator.next();
+
+		    if (envahisseur.estDetruit())
+		        iterator.remove();
+		}
+		
+		Iterator<Missile> iterator2 = spaceinvaders.missiles().iterator();
+
+		while (iterator2.hasNext()) {
+		    Missile missile = iterator2.next();
 
 		    if (missile.estDetruit())
-		        iterator.remove();
+		        iterator2.remove();
 		}
 		
 		assertEquals("" +
@@ -78,20 +86,29 @@ public class CollisionTest {
 		spaceinvaders.deplacerMissile();
 
 		for (Missile missile : spaceinvaders.missiles()) {
-			collision.detecterCollision(spaceinvaders.envahisseur(),missile);
+			for (Envahisseur envahisseur : spaceinvaders.envahisseurs()) {
+				collision.detecterCollision(envahisseur,missile);
+			}
 		}
 		
-		if (spaceinvaders.envahisseur().estDetruit()) {
-			spaceinvaders.enleverEnvahisseur();
-		}
 		
-		Iterator<Missile> iterator = spaceinvaders.missiles().iterator();
+		Iterator<Envahisseur> iterator = spaceinvaders.envahisseurs().iterator();
 
 		while (iterator.hasNext()) {
-		    Missile missile = iterator.next();
+		    Envahisseur envahisseur = iterator.next();
+
+		    if (envahisseur.estDetruit())
+		        iterator.remove();
+		}
+		
+		
+		Iterator<Missile> iterator2 = spaceinvaders.missiles().iterator();
+
+		while (iterator2.hasNext()) {
+		    Missile missile = iterator2.next();
 
 		    if (missile.estDetruit())
-		        iterator.remove();
+		        iterator2.remove();
 		}
 
 		
