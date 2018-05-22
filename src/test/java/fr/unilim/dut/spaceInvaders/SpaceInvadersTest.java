@@ -667,13 +667,56 @@ public class SpaceInvadersTest {
 		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(7,2),new Position(5,9), 2);
 		spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(2,2),new Position(3,1), 1);
 		 
-		spaceinvaders.tirerUnMissileEnvahisseur(new Dimension(2,2), spaceinvaders.envahisseurs().get(spaceinvaders.envahisseurs().size()-1));
+		spaceinvaders.tirerUnMissileEnvahisseur(new Dimension(2,2), spaceinvaders.envahisseurs().get(spaceinvaders.envahisseurs().size()-1), 1);
 		
 		assertEquals("" +
 				"...EE..........\n" + 
 				"...EE..........\n" +
 				"...MM..........\n" + 
 				"...MM..........\n" +
+				"...............\n" +
+				"...............\n" + 
+				"...............\n" +
+				"...............\n" + 
+				".....VVVVVVV...\n" + 
+				".....VVVVVVV...\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
+	}
+	
+	@Test
+	public void test_Missile_Envahisseur_Avance_Automatiquement() {
+		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(7,2),new Position(5,9), 2);
+		spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(2,2),new Position(3,1), 1);
+		 
+		spaceinvaders.tirerUnMissileEnvahisseur(new Dimension(2,2), spaceinvaders.envahisseurs().get(spaceinvaders.envahisseurs().size()-1),1);
+		spaceinvaders.deplacerAutomatiquementSprite();
+		
+		assertEquals("" +
+				"....EE.........\n" + 
+				"....EE.........\n" +
+				"...............\n" + 
+				"...MM..........\n" +
+				"...MM..........\n" +
+				"...............\n" + 
+				"...............\n" +
+				"...............\n" + 
+				".....VVVVVVV...\n" + 
+				".....VVVVVVV...\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
+	}
+	
+	@Test
+	public void test_Missile_Envahisseur_Disparait_Quant_Il_Touche_Espace_De_Jeu() {
+		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(7,2),new Position(5,9), 2);
+		spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(2,2),new Position(3,1), 1);
+		
+		for(int i = 0; i < 20;i++) {
+			spaceinvaders.deplacerAutomatiquementSprite();
+		}
+		
+		assertEquals("" +
+				"...EE..........\n" + 
+				"...EE..........\n" +
+				"...............\n" + 
+				"...............\n" +
 				"...............\n" +
 				"...............\n" + 
 				"...............\n" +

@@ -8,7 +8,7 @@ public class Collision {
 				for (int j = sprite1.ordonneeLaPlusBasse(); j<= sprite1.ordonneeLaPlusHaute(); j++) {
 					if (sprite2.occupeLaPosition(i, j)) {
 						sprite1.estDetruit(true); 
-						sprite2.estDetruit(true);
+						sprite2.estDetruit(true); 
 					}
 				}  
 			}
