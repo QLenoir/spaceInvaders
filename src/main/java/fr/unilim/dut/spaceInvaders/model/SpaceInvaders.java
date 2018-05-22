@@ -193,9 +193,11 @@ public class SpaceInvaders implements Jeu {
 		while (iterator.hasNext()) {
 			Envahisseur envahisseur = iterator.next();
 
-			if (envahisseur.estDetruit())
+			if (envahisseur.estDetruit()) {
 				iterator.remove();
-			this.score=this.score+100;
+				this.score=this.score+Constante.SCORE_PAR_ENVAHISSEUR;
+			}
+			
 		}
 
 		Iterator<Missile> iterator2 = this.missiles().iterator();

@@ -1,6 +1,7 @@
 package fr.unilim.dut.spaceInvaders.moteurjeu;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
@@ -28,6 +29,7 @@ public class DessinSpaceInvaders implements DessinJeu {
 			dessinerUnEnvahisseur(crayon);
 		}
 		crayon.setColor(Color.BLUE);
+		crayon.setFont(new Font("Britannic Bold",Font.BOLD,50));
 		crayon.drawString("Score : "+this.spaceInvaders.score(), Constante.ESPACEJEU_X_SCORE, Constante.ESPACEJEU_Y_SCORE);
 	}
 
