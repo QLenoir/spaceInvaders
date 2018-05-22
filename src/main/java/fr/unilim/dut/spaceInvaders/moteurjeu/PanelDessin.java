@@ -77,6 +77,7 @@ public class PanelDessin extends JPanel {
 	 * @param g
 	 *            graphics pour dessiner
 	 */
+	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
 		g.drawImage(this.imageEnCours, 0, 0, getWidth(), getHeight(), 0, 0,

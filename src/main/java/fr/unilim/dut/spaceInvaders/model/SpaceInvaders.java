@@ -18,6 +18,7 @@ public class SpaceInvaders implements Jeu {
 	List<Missile> missiles;
 	List<Envahisseur> envahisseurs;
 	Collision collision;
+	int score;
 
 	public SpaceInvaders(int longueur, int hauteur) {
 		this.longueur = longueur;
@@ -25,6 +26,7 @@ public class SpaceInvaders implements Jeu {
 		this.missiles = new ArrayList<>();
 		this.envahisseurs = new ArrayList<>();
 		this.collision = new Collision();
+		this.score = 0;
 	}
 
 	@Override
@@ -42,7 +44,7 @@ public class SpaceInvaders implements Jeu {
 		}
 		return espaceDeJeu.toString();
 	}
- 
+
 	private char recupererMarqueDeLaPosition(int x, int y) {
 		char marque;
 		if (this.aUnVaisseauQuiOccupeLaPosition(x, y))
@@ -184,7 +186,7 @@ public class SpaceInvaders implements Jeu {
 		detecterDestructionSprite();
 	}
 
-	private void detecterDestructionSprite() {
+	public void detecterDestructionSprite() {
 
 		Iterator<Envahisseur> iterator = this.envahisseurs().iterator();
 
@@ -193,8 +195,9 @@ public class SpaceInvaders implements Jeu {
 
 			if (envahisseur.estDetruit())
 				iterator.remove();
+			this.score=this.score+100;
 		}
-		
+
 		Iterator<Missile> iterator2 = this.missiles().iterator();
 
 		while (iterator2.hasNext()) {
@@ -205,7 +208,7 @@ public class SpaceInvaders implements Jeu {
 		}
 	}
 
-	private void deplacerAutomatiquementSprite() {
+	public void deplacerAutomatiquementSprite() {
 		if (this.aUnMissile()) { 
 			this.deplacerMissile();
 		}
@@ -221,7 +224,7 @@ public class SpaceInvaders implements Jeu {
 	}
 
 	private void deplacerEnvahisseurDansLeBonSens() {
-		
+
 		for (Envahisseur envahisseur : envahisseurs) {
 			if (envahisseur.DirectionAGauche()) {
 				envahisseur.deplacerHorizontalementVers(Direction.GAUCHE_ECRAN);
@@ -229,7 +232,7 @@ public class SpaceInvaders implements Jeu {
 				envahisseur.deplacerHorizontalementVers(Direction.DROITE_ECRAN);
 			}
 		}
-		
+
 	}
 
 	private void verifierDebordementEnvahisseur() {
@@ -239,7 +242,7 @@ public class SpaceInvaders implements Jeu {
 				for (Envahisseur envahisseur2 : envahisseurs) {
 					envahisseur2.setDirectionAGauche(true);
 				}
-				
+
 			} else if (envahisseur.abscisseLaPlusAGauche()<=0){
 				for (Envahisseur envahisseur2 : envahisseurs) {
 					envahisseur2.setDirectionAGauche(false);
@@ -313,7 +316,7 @@ public class SpaceInvaders implements Jeu {
 	public List<Envahisseur> envahisseurs() {
 		return this.envahisseurs;
 	}
- 
+
 	public void enleverEnvahisseur() {
 		Iterator<Envahisseur> iterator = this.envahisseurs.iterator();
 
@@ -334,5 +337,9 @@ public class SpaceInvaders implements Jeu {
 			if (missile.estDetruit())
 				iterator.remove();
 		}
+	}
+
+	public int score() {
+		return this.score;
 	}
 }
