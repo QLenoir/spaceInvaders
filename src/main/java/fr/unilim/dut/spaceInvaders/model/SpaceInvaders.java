@@ -16,6 +16,7 @@ public class SpaceInvaders implements Jeu {
 	int hauteur;
 	Vaisseau vaisseau; 
 	List<Missile> missiles;
+	List<Missile> missilesEnvahisseurs;
 	List<Envahisseur> envahisseurs;
 	Collision collision;
 	int score;
@@ -25,6 +26,7 @@ public class SpaceInvaders implements Jeu {
 		this.hauteur = hauteur;
 		this.missiles = new ArrayList<>();
 		this.envahisseurs = new ArrayList<>();
+		this.missilesEnvahisseurs = new ArrayList();
 		this.collision = new Collision();
 		this.score = 0;
 	}
@@ -65,7 +67,13 @@ public class SpaceInvaders implements Jeu {
 				occupeLaPosition = true;
 			}
 		}
-		return this.aUnMissile() && occupeLaPosition;
+		
+		for (Missile missile : missilesEnvahisseurs) {
+			if (missile.occupeLaPosition(x, y)) {
+				occupeLaPosition = true;
+			}
+		}
+		return occupeLaPosition;
 	}
 
 	private boolean aUnVaisseauQuiOccupeLaPosition(int x, int y) {
@@ -79,7 +87,7 @@ public class SpaceInvaders implements Jeu {
 				occupeLaPosition = true;
 			}
 		}
-		return this.aUnEnvahisseur() && occupeLaPosition;
+		return occupeLaPosition;
 	}
 
 	public boolean aUnEnvahisseur() {
@@ -170,7 +178,7 @@ public class SpaceInvaders implements Jeu {
 		}
 
 		if (commandeUser.tir) {
-			tirerUnMissile(new Dimension(Constante.MISSILE_LONGUEUR, Constante.MISSILE_HAUTEUR),
+			tirerUnMissileVaisseau(new Dimension(Constante.MISSILE_LONGUEUR, Constante.MISSILE_HAUTEUR),
 					Constante.MISSILE_VITESSE);
 		}
 
@@ -228,7 +236,7 @@ public class SpaceInvaders implements Jeu {
 	private void deplacerEnvahisseurDansLeBonSens() {
 
 		for (Envahisseur envahisseur : envahisseurs) {
-			if (envahisseur.DirectionAGauche()) {
+			if (envahisseur.directionAGauche()) {
 				envahisseur.deplacerHorizontalementVers(Direction.GAUCHE_ECRAN);
 			} else {
 				envahisseur.deplacerHorizontalementVers(Direction.DROITE_ECRAN);
@@ -258,7 +266,7 @@ public class SpaceInvaders implements Jeu {
 		return !this.aUnEnvahisseur();
 	}
 
-	public void tirerUnMissile(Dimension dimensionMissile, int vitesseMissile) {
+	public void tirerUnMissileVaisseau(Dimension dimensionMissile, int vitesseMissile) {
 
 		if ((vaisseau.hauteur()+ dimensionMissile.hauteur()) > this.hauteur )
 			throw new MissileException("Pas assez de hauteur libre entre le vaisseau et le haut de l'espace jeu pour tirer le missile");
@@ -343,5 +351,10 @@ public class SpaceInvaders implements Jeu {
 
 	public int score() {
 		return this.score;
+	}
+
+	public void tirerUnMissileEnvahisseur(Dimension dimension,Envahisseur envahisseur) {
+
+		this.missilesEnvahisseurs.add(envahisseur.tirerUnMissile(dimension,Constante.MISSILE_VITESSE));
 	}
 }

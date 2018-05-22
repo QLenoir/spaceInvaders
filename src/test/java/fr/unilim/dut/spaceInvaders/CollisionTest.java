@@ -31,7 +31,7 @@ public class CollisionTest {
 		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(7,2),new Position(5,9), 1);
 		spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(2,2),new Position(8,1), 1);
 		
-		spaceinvaders.tirerUnMissile(new Dimension(3,2),2);
+		spaceinvaders.tirerUnMissileVaisseau(new Dimension(3,2),2);
 		spaceinvaders.deplacerMissile();
 		spaceinvaders.deplacerMissile();
 		spaceinvaders.deplacerMissile();
@@ -80,7 +80,7 @@ public class CollisionTest {
 		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(7,2),new Position(5,9), 1);
 		spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(2,2),new Position(6,1), 1);
 		
-		spaceinvaders.tirerUnMissile(new Dimension(3,2),2);
+		spaceinvaders.tirerUnMissileVaisseau(new Dimension(3,2),2);
 		spaceinvaders.deplacerMissile();
 		spaceinvaders.deplacerMissile();
 		spaceinvaders.deplacerMissile();
