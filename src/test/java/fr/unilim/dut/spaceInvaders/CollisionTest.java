@@ -29,9 +29,9 @@ public class CollisionTest {
 		spaceinvaders.deplacerMissile();
 		spaceinvaders.deplacerMissile();
 
-		this.spaceinvaders.detecterCollisions();
+		this.spaceinvaders.detecterAutomatiquementCollisions();
 
-		this.spaceinvaders.detecterDestructionSprite();
+		this.spaceinvaders.destructionAutomatiquementSprite();
 		
 		assertEquals("" +
 				"...............\n" + 
@@ -57,9 +57,9 @@ public class CollisionTest {
 		spaceinvaders.deplacerMissile();
 		spaceinvaders.deplacerMissile();
 
-		this.spaceinvaders.detecterCollisions();
+		this.spaceinvaders.detecterAutomatiquementCollisions();
 
-		this.spaceinvaders.detecterDestructionSprite();
+		this.spaceinvaders.destructionAutomatiquementSprite();
 
 		
 		assertEquals("" +

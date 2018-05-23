@@ -416,7 +416,7 @@ public class SpaceInvadersTest {
 			}
 
 		}
-		spaceinvaders.detecterDestructionSprite();
+		spaceinvaders.destructionAutomatiquementSprite();
 
 		assertEquals("" + 
 				"...............\n" + 
@@ -663,7 +663,7 @@ public class SpaceInvadersTest {
 			}
 
 		}
-		spaceinvaders.detecterDestructionSprite();
+		spaceinvaders.destructionAutomatiquementSprite();
 
 		assertEquals(100,spaceinvaders.score());
 	}
