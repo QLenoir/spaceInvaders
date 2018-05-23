@@ -409,7 +409,10 @@ public class SpaceInvadersTest {
 		for (Missile missile : spaceinvaders.missiles()) {
 			for (Envahisseur envahisseur : spaceinvaders.envahisseurs()) {
 				Collision collision = new Collision();
-				collision.detecterCollision(missile, envahisseur);
+				if(collision.detecterCollision(envahisseur, missile)) {
+					envahisseur.estDetruit(true);
+					missile.estDetruit(true);
+				}
 			}
 
 		}
@@ -653,7 +656,10 @@ public class SpaceInvadersTest {
 		for (Missile missile : spaceinvaders.missiles()) {
 			for (Envahisseur envahisseur : spaceinvaders.envahisseurs()) {
 				Collision collision = new Collision();
-				collision.detecterCollision(missile, envahisseur);
+				if(collision.detecterCollision(envahisseur, missile)) {
+					envahisseur.estDetruit(true);
+					missile.estDetruit(true);
+				}
 			}
 
 		}

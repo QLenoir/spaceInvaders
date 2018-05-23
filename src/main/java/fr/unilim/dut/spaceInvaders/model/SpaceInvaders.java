@@ -184,14 +184,21 @@ public class SpaceInvaders implements Jeu {
 
 		deplacerAutomatiquementSprite();
 
+		detecterCollisions();
+
+		detecterDestructionSprite();
+	}
+
+	public void detecterCollisions() {
 		for (Missile missile : missiles) {
 			for (Envahisseur envahisseur : envahisseurs) {
-				this.collision.detecterCollision(envahisseur, missile);	
+				if(this.collision.detecterCollision(envahisseur, missile)) {
+					envahisseur.estDetruit(true);
+					missile.estDetruit(true);
+				}
 			}
 
 		}
-
-		detecterDestructionSprite();
 	}
 
 	public void detecterDestructionSprite() {
@@ -299,8 +306,11 @@ public class SpaceInvaders implements Jeu {
 		while (iterator.hasNext() && iterator2.hasNext()) {
 			Missile missile = iterator.next();
 			missile2 = iterator2.next();
-			this.collision.detecterCollision(missile, missile2);
-			missile.estDetruit(false);
+			
+			if(this.collision.detecterCollision(missile, missile2)) {
+				missile2.estDetruit(true);
+			}
+			 
 			this.enleverMissile();
 		}
 	}
