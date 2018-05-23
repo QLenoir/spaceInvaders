@@ -43,12 +43,16 @@ public class DessinSpaceInvaders implements DessinJeu {
 	private void dessinerUnVaisseau(Graphics2D crayon) {
 		crayon.setColor(Color.GRAY);
 		crayon.fillRect(this.spaceInvaders.vaisseau().abscisseLaPlusAGauche(),this.spaceInvaders.vaisseau().ordonneeLaPlusBasse()+Constante.ESPACEJEU_SCORE,this.spaceInvaders.vaisseau().dimension().longueur(),this.spaceInvaders.vaisseau().dimension().hauteur());
-	}
+	} 
 
 	private void dessinerUnMssile(Graphics2D crayon) {
 		crayon.setColor(Color.BLUE);
 		for (Missile missile : this.spaceInvaders.missiles()) {
 			crayon.fillRect(missile.abscisseLaPlusAGauche(),missile.ordonneeLaPlusBasse()+Constante.ESPACEJEU_SCORE,missile.dimension().longueur(),missile.dimension().hauteur());
+		}
+		crayon.setColor(Color.RED);
+		for (Missile missileEnvahisseur : this.spaceInvaders.missilesEnvahisseurs()) {
+			crayon.fillRect(missileEnvahisseur.abscisseLaPlusAGauche(),missileEnvahisseur.ordonneeLaPlusBasse()+Constante.ESPACEJEU_SCORE,missileEnvahisseur.dimension().longueur(),missileEnvahisseur.dimension().hauteur());
 		}
 	}
 }

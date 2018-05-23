@@ -6,8 +6,8 @@ public class Collision {
 		int i = sprite1.abscisseLaPlusAGauche();
 		int j = sprite1.ordonneeLaPlusBasse();
 		boolean fini = false;
-		while (	i <= sprite1.abscisseLaPlusADroite() && fini == false) {
-				while ( j<= sprite1.ordonneeLaPlusHaute() && fini == false) {
+		while (	i <= sprite1.abscisseLaPlusADroite() && !fini) {
+				while ( j<= sprite1.ordonneeLaPlusHaute() && !fini) {
 					if (sprite2.occupeLaPosition(i, j)) {
 						fini = true;
 					}

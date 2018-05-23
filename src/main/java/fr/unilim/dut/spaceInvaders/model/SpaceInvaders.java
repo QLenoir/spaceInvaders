@@ -3,6 +3,7 @@ package fr.unilim.dut.spaceInvaders.model;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 
 import fr.unilim.dut.spaceInvaders.moteurjeu.Commande;
 import fr.unilim.dut.spaceInvaders.moteurjeu.Jeu;
@@ -182,11 +183,21 @@ public class SpaceInvaders implements Jeu {
 					Constante.MISSILE_VITESSE);
 		}
 
+		tirEnvahisseurAutomatique();
+		
 		deplacerAutomatiquementSprite();
 
 		detecterAutomatiquementCollisions();
 
 		destructionAutomatiquementSprite();
+	}
+
+	private void tirEnvahisseurAutomatique() {
+		Random rand = new Random();
+		if (rand.nextInt(100)<Constante.ENVAHISSEUR_PROBABILITE_TIR) {
+			this.tirerUnMissileEnvahisseur(new Dimension(Constante.MISSILE_HAUTEUR,Constante.MISSILE_LONGUEUR),this.envahisseurs.get(rand.nextInt(this.envahisseurs.size())),Constante.MISSILE_VITESSE);
+		}
+		
 	}
 
 	public void detecterAutomatiquementCollisions() {
@@ -380,5 +391,9 @@ public class SpaceInvaders implements Jeu {
 
 	public void tirerUnMissileEnvahisseur(Dimension dimension,Envahisseur envahisseur, int i) {
 		this.missilesEnvahisseurs.add(envahisseur.tirerUnMissile(dimension,i));
+	}
+
+	public List<Missile> missilesEnvahisseurs() {
+		return missilesEnvahisseurs;
 	}
 }
