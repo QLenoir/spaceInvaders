@@ -210,6 +210,13 @@ public class SpaceInvaders implements Jeu {
 			}
 
 		}
+		
+		for (Missile missileEnvahisseur : missilesEnvahisseurs) {
+				if(this.collision.detecterCollision(missileEnvahisseur, this.vaisseau)) {
+					this.vaisseau.estDetruit(true);
+					missileEnvahisseur.estDetruit(true);
+				}
+		}
 	}
 
 	public void destructionAutomatiquementSprite() {
@@ -233,6 +240,19 @@ public class SpaceInvaders implements Jeu {
 
 			if (missile.estDetruit())
 				iterator2.remove();
+		}
+		
+		Iterator<Missile> iterator3 = this.missilesEnvahisseurs().iterator();
+
+		while (iterator3.hasNext()) {
+			Missile missileEnvahisseur = iterator3.next();
+
+			if (missileEnvahisseur.estDetruit())
+				iterator3.remove();
+		}
+		
+		if(this.vaisseau.estDetruit) {
+			this.vaisseau=null;
 		}
 	}
 
@@ -296,7 +316,7 @@ public class SpaceInvaders implements Jeu {
 
 	@Override
 	public boolean etreFini() {
-		return !this.aUnEnvahisseur();
+		return !this.aUnEnvahisseur() && !this.aUnVaisseau();
 	}
 
 	public void tirerUnMissileVaisseau(Dimension dimensionMissile, int vitesseMissile) {

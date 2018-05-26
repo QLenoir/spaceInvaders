@@ -74,5 +74,37 @@ public class CollisionTest {
 				".....VVVVVVV...\n" + 
 				".....VVVVVVV...\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
 	}
+	
+	@Test
+	public void test_vaisseau_disparait_apres_collision_avec_missile_de_face () {
+		
+		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(7,2),new Position(5,9), 1);
+		spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(2,2),new Position(6,1), 1);
+		
+		spaceinvaders.tirerUnMissileEnvahisseur(new Dimension(2,2), spaceinvaders.envahisseurs().get(spaceinvaders.envahisseurs().size()-1),1);
+		
+		spaceinvaders.deplacerAutomatiquementSprite();
+		spaceinvaders.deplacerAutomatiquementSprite();
+		spaceinvaders.deplacerAutomatiquementSprite();
+		spaceinvaders.deplacerAutomatiquementSprite();
+		spaceinvaders.deplacerAutomatiquementSprite();
+		
+		this.spaceinvaders.detecterAutomatiquementCollisions();
+
+		this.spaceinvaders.destructionAutomatiquementSprite();
+
+		
+		assertEquals("" +
+				"...........EE..\n" + 
+				"...........EE..\n" +
+				"...............\n" + 
+				"...............\n" +
+				"...............\n" +
+				"...............\n" + 
+				"...............\n" +
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
+	}
 }
 

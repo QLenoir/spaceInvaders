@@ -396,42 +396,6 @@ public class SpaceInvadersTest {
 	}
 
 	@Test
-	public void test_EnvahisseurDisparaitAutomatiquement_ApresEtreTouchePaLeMissile() {
-
-		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(7,2),new Position(5,9), 2);
-		spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(2,2),new Position(7,1), 1);
-
-		spaceinvaders.deplacerEnvahisseur();
-		spaceinvaders.tirerUnMissileVaisseau(new Dimension(3,2),1);
-		for (int i = 1; i <=5 ; i++) {
-			spaceinvaders.deplacerMissile();
-		}
-		for (Missile missile : spaceinvaders.missiles()) {
-			for (Envahisseur envahisseur : spaceinvaders.envahisseurs()) {
-				Collision collision = new Collision();
-				if(collision.detecterCollision(envahisseur, missile)) {
-					envahisseur.estDetruit(true);
-					missile.estDetruit(true);
-				}
-			}
-
-		}
-		spaceinvaders.destructionAutomatiquementSprite();
-
-		assertEquals("" + 
-				"...............\n" + 
-				"...............\n" +
-				"...............\n" + 
-				"...............\n" + 
-				"...............\n" + 
-				"...............\n" + 
-				"...............\n" + 
-				"...............\n" + 
-				".....VVVVVVV...\n" + 
-				".....VVVVVVV...\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
-	}
-
-	@Test
 	public void test_EnvahisseurChangeDeSens_QuandIlCommenceASortirDeEspaceJeuADroite() {
 
 		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(7,2),new Position(5,9), 1);
@@ -714,6 +678,7 @@ public class SpaceInvadersTest {
 		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(7,2),new Position(5,9), 2);
 		spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(2,2),new Position(3,1), 1);
 		
+		spaceinvaders.tirerUnMissileEnvahisseur(new Dimension(2,2), spaceinvaders.envahisseurs().get(spaceinvaders.envahisseurs().size()-1),1);
 		for(int i = 0; i < 20;i++) {
 			spaceinvaders.deplacerAutomatiquementSprite();
 		}
