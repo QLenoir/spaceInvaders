@@ -95,7 +95,7 @@ public class SpaceInvaders implements Jeu {
 		return !this.envahisseurs.isEmpty();
 	}
 
-	private boolean aUnVaisseau() {
+	public boolean aUnVaisseau() {
 		return this.vaisseau!=null;
 	}
 
@@ -211,8 +211,11 @@ public class SpaceInvaders implements Jeu {
 
 		}
 		
-		for (Missile missileEnvahisseur : missilesEnvahisseurs) {
-				if(this.collision.detecterCollision(missileEnvahisseur, this.vaisseau)) {
+		Iterator<Missile> iterator = this.missilesEnvahisseurs.iterator();
+		while(iterator.hasNext() && this.aUnVaisseau()) {
+			Missile missileEnvahisseur = iterator.next();
+				
+			if(this.collision.detecterCollision(missileEnvahisseur, this.vaisseau)) {
 					this.vaisseau.estDetruit(true);
 					missileEnvahisseur.estDetruit(true);
 				}
@@ -251,7 +254,7 @@ public class SpaceInvaders implements Jeu {
 				iterator3.remove();
 		}
 		
-		if(this.vaisseau.estDetruit) {
+		if(aUnVaisseau() && this.vaisseau.estDetruit) {
 			this.vaisseau=null;
 		}
 	}
@@ -316,7 +319,7 @@ public class SpaceInvaders implements Jeu {
 
 	@Override
 	public boolean etreFini() {
-		return !this.aUnEnvahisseur() && !this.aUnVaisseau();
+		return !this.aUnEnvahisseur() || !this.aUnVaisseau();
 	}
 
 	public void tirerUnMissileVaisseau(Dimension dimensionMissile, int vitesseMissile) {

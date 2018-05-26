@@ -21,7 +21,9 @@ public class DessinSpaceInvaders implements DessinJeu {
 	@Override 
 	public void dessiner(BufferedImage image) {
 		Graphics2D crayon = (Graphics2D) image.getGraphics();
-		dessinerUnVaisseau(crayon);
+		if (spaceInvaders.aUnVaisseau()){
+			dessinerUnVaisseau(crayon);
+		}
 		if (spaceInvaders.aUnMissile()) {
 			dessinerUnMssile(crayon);
 		}
