@@ -52,7 +52,7 @@ public class DessinSpaceInvaders implements DessinJeu {
 		}
 		crayon.setColor(Color.RED);
 		for (Missile missileEnvahisseur : this.spaceInvaders.missilesEnvahisseurs()) {
-			crayon.fillRect(missileEnvahisseur.abscisseLaPlusAGauche(),missileEnvahisseur.ordonneeLaPlusBasse()+Constante.ESPACEJEU_SCORE,missileEnvahisseur.dimension().longueur(),missileEnvahisseur.dimension().hauteur());
+			crayon.fillRect(missileEnvahisseur.abscisseLaPlusAGauche(),missileEnvahisseur.ordonneeLaPlusHaute()+Constante.ESPACEJEU_SCORE,missileEnvahisseur.dimension().hauteur(),missileEnvahisseur.dimension().longueur());
 		}
 	}
 }
