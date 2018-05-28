@@ -7,7 +7,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import fr.unilim.dut.spaceInvaders.model.Collision;
-import fr.unilim.dut.spaceInvaders.model.Constante;
 import fr.unilim.dut.spaceInvaders.model.Dimension;
 import fr.unilim.dut.spaceInvaders.model.Envahisseur;
 import fr.unilim.dut.spaceInvaders.model.Missile;
@@ -408,9 +407,9 @@ public class SpaceInvadersTest {
 		spaceinvaders.deplacerEnvahisseur();
 
 		assertEquals("" +
-				"............EE.\n" + 
-				"............EE.\n" +
 				"...............\n" + 
+				"............EE.\n" +
+				"............EE.\n" + 
 				"...............\n" +
 				"...............\n" +
 				"...............\n" + 
@@ -435,9 +434,9 @@ public class SpaceInvadersTest {
 		spaceinvaders.deplacerEnvahisseur();
 
 		assertEquals("" +
-				"..EE...........\n" + 
-				"..EE...........\n" +
 				"...............\n" + 
+				"..EE...........\n" +
+				"..EE...........\n" + 
 				"...............\n" +
 				"...............\n" +
 				"...............\n" + 
@@ -546,9 +545,9 @@ public class SpaceInvadersTest {
 		spaceinvaders.deplacerEnvahisseur();
 
 		assertEquals("" +
-				"........EE..EE.\n" + 
-				"........EE..EE.\n" +
 				"...............\n" + 
+				"........EE..EE.\n" +
+				"........EE..EE.\n" + 
 				"...............\n" +
 				"...............\n" +
 				"...............\n" + 
@@ -572,9 +571,9 @@ public class SpaceInvadersTest {
 		spaceinvaders.deplacerEnvahisseur();
 
 		assertEquals("" +
-				".EE.EE.........\n" + 
-				".EE.EE.........\n" +
 				"...............\n" + 
+				".EE.EE.........\n" +
+				".EE.EE.........\n" + 
 				"...............\n" +
 				"...............\n" +
 				"...............\n" + 
@@ -595,10 +594,10 @@ public class SpaceInvadersTest {
 		spaceinvaders.deplacerEnvahisseur();
 
 		assertEquals("" +
-				"........EE..EE.\n" + 
-				"........EE..EE.\n" +
 				"...............\n" + 
 				"...............\n" +
+				"........EE..EE.\n" + 
+				"........EE..EE.\n" +
 				"...............\n" +
 				"...............\n" + 
 				"...............\n" +
@@ -685,9 +684,9 @@ public class SpaceInvadersTest {
 		}
 		
 		assertEquals("" +
-				"...EE..........\n" + 
-				"...EE..........\n" +
 				"...............\n" + 
+				"...EE..........\n" +
+				"...EE..........\n" + 
 				"...............\n" +
 				"...............\n" +
 				"...............\n" + 
@@ -705,16 +704,35 @@ public class SpaceInvadersTest {
 		spaceinvaders.positionnerUneLigneEnvahisseur(new Dimension(1,1), 2, 15, 0, 1);
 		spaceinvaders.positionnerUneLigneEnvahisseur(new Dimension(1,1), 2, 15, 2, 1);
 		
-		spaceinvaders.deplacerEnvahisseur();
-		spaceinvaders.deplacerEnvahisseur();
-		spaceinvaders.deplacerEnvahisseur();
-
 		assertEquals("" +
-				".E.E.E.E.E.E.E.\n" + 
+				"..E.E.E.E.E.E.E\n" + 
+				"...............\n" +
+				"..E.E.E.E.E.E.E\n" + 
+				"...............\n" +
+				"...............\n" +
+				"...............\n" + 
+				"...............\n" +
+				"...............\n" + 
+				".....VVVVVVV...\n" + 
+				".....VVVVVVV...\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
+	}
+	
+	@Test
+	public void test_Placer_Plusieurs_Lignes_Envahisseur_Qui_Vont_Vers_Le_Bas() {
+ 
+		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(7,2),new Position(5,9), 1);
+		
+		spaceinvaders.positionnerUneLigneEnvahisseur(new Dimension(1,1), 2, 15, 0, 1);
+		spaceinvaders.positionnerUneLigneEnvahisseur(new Dimension(1,1), 2, 15, 2, 1);
+		
+		spaceinvaders.deplacerAutomatiquementSprite();
+		
+		assertEquals("" +
+				"...............\n" + 
 				"...............\n" +
 				".E.E.E.E.E.E.E.\n" + 
 				"...............\n" +
-				"...............\n" +
+				".E.E.E.E.E.E.E.\n" +
 				"...............\n" + 
 				"...............\n" +
 				"...............\n" + 

@@ -270,7 +270,7 @@ public class SpaceInvaders implements Jeu {
 	public void deplacerAutomatiquementSprite() {
 		if (this.aUnMissile()) {  
 			this.deplacerMissile();
-			this.deplacerMissileEnvahisseur();
+			this.deplacerMissileEnvahisseur(); 
 		}
 		if (this.aUnEnvahisseur()) {
 			this.deplacerEnvahisseur();
@@ -315,11 +315,13 @@ public class SpaceInvaders implements Jeu {
 			if (envahisseur.abscisseLaPlusADroite()>=this.longueur-1) {
 				for (Envahisseur envahisseur2 : envahisseurs) {
 					envahisseur2.setDirectionAGauche(true);
+					envahisseur2.deplacerVerticalementVers(Direction.BAS_ECRAN);
 				}
 
 			} else if (envahisseur.abscisseLaPlusAGauche()<=0){
 				for (Envahisseur envahisseur2 : envahisseurs) {
 					envahisseur2.setDirectionAGauche(false);
+					envahisseur2.deplacerVerticalementVers(Direction.BAS_ECRAN);
 				}
 			}
 		}
