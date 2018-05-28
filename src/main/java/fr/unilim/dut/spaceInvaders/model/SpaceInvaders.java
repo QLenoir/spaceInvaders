@@ -13,6 +13,7 @@ import fr.unilim.dut.spaceInvaders.utils.MissileException;
 
 public class SpaceInvaders implements Jeu {
 
+	
 	int longueur;
 	int hauteur;
 	Vaisseau vaisseau; 
@@ -161,11 +162,18 @@ public class SpaceInvaders implements Jeu {
 		this.positionnerUnNouveauVaisseau(dimensionVaisseau, positionVaisseau, Constante.VAISSEAU_VITESSE);
 
 		Dimension dimensionEnvahisseur = new Dimension(Constante.ENVAHISSEUR_LONGUEUR,Constante.ENVAHISSEUR_HAUTEUR);
-		for (int i = 50;i<=650;i=i+90) {
-			Position positionEnvahisseur = new Position(i,50);
-			this.positionnerUnNouveauEnvahisseur(dimensionEnvahisseur, positionEnvahisseur, Constante.ENVAHISSEUR_VITESSE);
+		
+		for (int i = 0; i < 4; i++) {
+			positionnerUneLigneEnvahisseur(dimensionEnvahisseur, Constante.ENVAHISSEUR_ECART, Constante.TAILLE_LIGNE, Constante.ENVAHISSEUR_LIGNE*i+Constante.ENVAHISSEUR_LIGNE, Constante.ENVAHISSEUR_VITESSE );
 		}
 
+	}
+
+	public void positionnerUneLigneEnvahisseur(Dimension dimensionEnvahisseur,int ecart, int tailleLigne ,int ordonnee, int vitesse ) {
+		for (int i = ecart ;i<=tailleLigne;i=i+ecart) {
+			Position positionEnvahisseur = new Position(i,ordonnee);
+			this.positionnerUnNouveauEnvahisseur(dimensionEnvahisseur, positionEnvahisseur, vitesse);
+		}
 	} 
 
 	@Override

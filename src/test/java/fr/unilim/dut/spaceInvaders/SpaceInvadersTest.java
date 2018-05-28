@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import fr.unilim.dut.spaceInvaders.model.Collision;
+import fr.unilim.dut.spaceInvaders.model.Constante;
 import fr.unilim.dut.spaceInvaders.model.Dimension;
 import fr.unilim.dut.spaceInvaders.model.Envahisseur;
 import fr.unilim.dut.spaceInvaders.model.Missile;
@@ -687,6 +688,31 @@ public class SpaceInvadersTest {
 				"...EE..........\n" + 
 				"...EE..........\n" +
 				"...............\n" + 
+				"...............\n" +
+				"...............\n" +
+				"...............\n" + 
+				"...............\n" +
+				"...............\n" + 
+				".....VVVVVVV...\n" + 
+				".....VVVVVVV...\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
+	}
+	
+	@Test
+	public void test_Placer_Plusieurs_Lignes_Envahisseur() {
+ 
+		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(7,2),new Position(5,9), 1);
+		
+		spaceinvaders.positionnerUneLigneEnvahisseur(new Dimension(1,1), 2, 15, 0, 1);
+		spaceinvaders.positionnerUneLigneEnvahisseur(new Dimension(1,1), 2, 15, 2, 1);
+		
+		spaceinvaders.deplacerEnvahisseur();
+		spaceinvaders.deplacerEnvahisseur();
+		spaceinvaders.deplacerEnvahisseur();
+
+		assertEquals("" +
+				".E.E.E.E.E.E.E.\n" + 
+				"...............\n" +
+				".E.E.E.E.E.E.E.\n" + 
 				"...............\n" +
 				"...............\n" +
 				"...............\n" + 
