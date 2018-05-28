@@ -201,13 +201,16 @@ public class SpaceInvaders implements Jeu {
 	}
 
 	private void tirEnvahisseurAutomatique() {
-		Random rand = new Random();
-		if (rand.nextInt(100)<Constante.ENVAHISSEUR_PROBABILITE_TIR) {
-			this.tirerUnMissileEnvahisseur(new Dimension(Constante.MISSILE_HAUTEUR,Constante.MISSILE_LONGUEUR),this.envahisseurs.get(rand.nextInt(this.envahisseurs.size())),Constante.MISSILE_VITESSE);
-		}
 		
+		Random rand = new Random();
+		int proba = rand.nextInt(100);
+		int numeroEnvahisseur = rand.nextInt(this.envahisseurs.size());
+		
+		if (proba<Constante.ENVAHISSEUR_PROBABILITE_TIR && !this.aUnEnvahisseurQuiOccupeLaPosition(this.envahisseurs.get(numeroEnvahisseur).abscisseLaPlusAGauche(),this.envahisseurs.get(numeroEnvahisseur).ordonneeLaPlusHaute()+Constante.ENVAHISSEUR_LIGNE)) {
+			this.tirerUnMissileEnvahisseur(new Dimension(Constante.MISSILE_HAUTEUR,Constante.MISSILE_LONGUEUR),this.envahisseurs.get(numeroEnvahisseur),Constante.MISSILE_VITESSE);
+		}
 	}
-
+ 
 	public void detecterAutomatiquementCollisions() {
 		for (Missile missile : missiles) {
 			for (Envahisseur envahisseur : envahisseurs) {
