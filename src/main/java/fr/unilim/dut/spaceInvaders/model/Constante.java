@@ -25,7 +25,7 @@ public class Constante {
 	public static final int ENVAHISSEUR_LONGUEUR = 50;
     public static final int ENVAHISSEUR_HAUTEUR = 20;
     public static final int ENVAHISSEUR_VITESSE = 10;
-    public static final int ENVAHISSEUR_PROBABILITE_TIR = 99;
+    public static final int ENVAHISSEUR_PROBABILITE_TIR = 30;
     public static final int ENVAHISSEUR_ECART = 90;
     public static final int ENVAHISSEUR_LIGNE = 50;
     
