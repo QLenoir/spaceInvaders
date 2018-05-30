@@ -161,12 +161,16 @@ public class SpaceInvaders implements Jeu {
 		Dimension dimensionVaisseau = new Dimension(Constante.VAISSEAU_LONGUEUR, Constante.VAISSEAU_HAUTEUR);
 		this.positionnerUnNouveauVaisseau(dimensionVaisseau, positionVaisseau, Constante.VAISSEAU_VITESSE);
 
+		creerHordeEnvahisseur();
+
+	}
+
+	private void creerHordeEnvahisseur() {
 		Dimension dimensionEnvahisseur = new Dimension(Constante.ENVAHISSEUR_LONGUEUR,Constante.ENVAHISSEUR_HAUTEUR);
 		
 		for (int i = 0; i < 4; i++) {
 			positionnerUneLigneEnvahisseur(dimensionEnvahisseur, Constante.ENVAHISSEUR_ECART, Constante.TAILLE_LIGNE, Constante.ENVAHISSEUR_LIGNE*i+Constante.ENVAHISSEUR_LIGNE, Constante.ENVAHISSEUR_VITESSE );
 		}
-
 	}
 
 	public void positionnerUneLigneEnvahisseur(Dimension dimensionEnvahisseur,int ecart, int tailleLigne ,int ordonnee, int vitesse ) {
@@ -198,6 +202,10 @@ public class SpaceInvaders implements Jeu {
 		detecterAutomatiquementCollisions();
 
 		destructionAutomatiquementSprite();
+		
+		if(!this.aUnEnvahisseur()) {
+			creerHordeEnvahisseur();
+		}
 	}
 
 	private void tirEnvahisseurAutomatique() {
@@ -332,7 +340,7 @@ public class SpaceInvaders implements Jeu {
 
 	@Override
 	public boolean etreFini() {
-		return !this.aUnEnvahisseur() || !this.aUnVaisseau();
+		return !this.aUnVaisseau();
 	}
 
 	public void tirerUnMissileVaisseau(Dimension dimensionMissile, int vitesseMissile) {
