@@ -30,6 +30,14 @@ public class DessinSpaceInvaders implements DessinJeu {
 		if (spaceInvaders.aUnEnvahisseur()) {
 			dessinerUnEnvahisseur(crayon);
 		}
+		
+		if (!spaceInvaders.aUnVaisseau()) {
+			crayon.clearRect(0, 0, Constante.ESPACEJEU_LONGUEUR, Constante.ESPACEJEU_HAUTEUR+Constante.ESPACEJEU_SCORE);
+			crayon.setColor(Color.YELLOW);
+			crayon.setFont(new Font("Britannic Bold",Font.BOLD,80));
+			crayon.drawString("Game Over", Constante.GAMEOVER_X, Constante.GAMEOVER_Y);
+		}
+		
 		crayon.setColor(Color.BLUE);
 		crayon.setFont(new Font("Britannic Bold",Font.BOLD,50));
 		crayon.drawString("Score : "+this.spaceInvaders.score(), Constante.ESPACEJEU_X_SCORE, Constante.ESPACEJEU_Y_SCORE);

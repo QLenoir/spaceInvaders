@@ -32,7 +32,8 @@ public class Constante {
     public static final int SCORE_PAR_ENVAHISSEUR = 100;
 	public static final int TAILLE_LIGNE = 650;
 	
-	
-	
+	public static final int GAMEOVER_X = 230;
+	public static final int GAMEOVER_Y = 410;
+
 }
 

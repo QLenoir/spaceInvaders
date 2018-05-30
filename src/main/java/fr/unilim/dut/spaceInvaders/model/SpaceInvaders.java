@@ -186,7 +186,7 @@ public class SpaceInvaders implements Jeu {
 			this.deplacerVaisseauVersLaDroite();
 		}
 
-		if (commandeUser.tir) {
+		if (commandeUser.tir && this.missiles.size()<3) {
 			tirerUnMissileVaisseau(new Dimension(Constante.MISSILE_LONGUEUR, Constante.MISSILE_HAUTEUR),
 					Constante.MISSILE_VITESSE);
 		}
