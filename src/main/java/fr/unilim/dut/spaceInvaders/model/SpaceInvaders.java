@@ -22,6 +22,7 @@ public class SpaceInvaders implements Jeu {
 	List<Envahisseur> envahisseurs;
 	Collision collision;
 	int score;
+	int nombreVague;
 
 	public SpaceInvaders(int longueur, int hauteur) {
 		this.longueur = longueur;
@@ -31,6 +32,7 @@ public class SpaceInvaders implements Jeu {
 		this.missilesEnvahisseurs = new ArrayList<>();
 		this.collision = new Collision();
 		this.score = 0;
+		this.nombreVague = 1;
 	}
 
 	@Override
@@ -205,6 +207,7 @@ public class SpaceInvaders implements Jeu {
 		
 		if(!this.aUnEnvahisseur()) {
 			creerHordeEnvahisseur();
+			this.nombreVague++;
 		}
 	}
 
@@ -439,5 +442,9 @@ public class SpaceInvaders implements Jeu {
 
 	public List<Missile> missilesEnvahisseurs() {
 		return missilesEnvahisseurs;
+	}
+
+	public int nombreVague() {
+		return this.nombreVague;
 	}
 }

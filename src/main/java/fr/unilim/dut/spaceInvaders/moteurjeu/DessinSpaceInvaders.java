@@ -38,9 +38,14 @@ public class DessinSpaceInvaders implements DessinJeu {
 			crayon.drawString("Game Over", Constante.GAMEOVER_X, Constante.GAMEOVER_Y);
 		}
 		
+		dessinerScoreEtNombreVague(crayon);
+	}
+
+	private void dessinerScoreEtNombreVague(Graphics2D crayon) {
 		crayon.setColor(Color.BLUE);
 		crayon.setFont(new Font("Britannic Bold",Font.BOLD,50));
 		crayon.drawString("Score : "+this.spaceInvaders.score(), Constante.ESPACEJEU_X_SCORE, Constante.ESPACEJEU_Y_SCORE);
+		crayon.drawString("Vague "+spaceInvaders.nombreVague(), Constante.ESPACEJEU_X_SCORE, Constante.ESPACEJEU_Y_SCORE+50);
 	}
 
 	private void dessinerUnEnvahisseur(Graphics2D crayon) {
