@@ -45,6 +45,7 @@ public class InterfaceGraphique  {
 		
 		//recuperation du focus
 		f.pack();
+		f.setTitle("Space Invaders");
 		f.setVisible(true);
 		f.getContentPane().setFocusable(true);
 		f.getContentPane().requestFocus();

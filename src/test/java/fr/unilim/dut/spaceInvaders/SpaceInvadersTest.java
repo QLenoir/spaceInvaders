@@ -809,7 +809,7 @@ public class SpaceInvadersTest {
 				"...............\n" + 
 				"...............\n" +
 				"...............\n" + 
-				"...............\n" + 
+				"...............\n" +  
 				"...............\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
 		assertTrue(spaceinvaders.etreFini());
 	}
