@@ -426,7 +426,7 @@ public class SpaceInvadersTest {
 		spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(2,2),new Position(1,1), 1);
 		
 		for (Envahisseur envahisseur : this.spaceinvaders.envahisseurs()) {
-			envahisseur.setDirectionAGauche(true);
+			envahisseur.setDirection(true);
 		}
 
 		spaceinvaders.deplacerEnvahisseur();
@@ -564,7 +564,7 @@ public class SpaceInvadersTest {
 		spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(2,2),new Position(2,1), 1);
 		spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(2,2),new Position(5,1), 1);
 		for (Envahisseur envahisseur : spaceinvaders.envahisseurs()) {
-			envahisseur.setDirectionAGauche(true);
+			envahisseur.setDirection(true);
 		}
 		spaceinvaders.deplacerEnvahisseur();
 		spaceinvaders.deplacerEnvahisseur();

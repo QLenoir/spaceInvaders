@@ -4,19 +4,19 @@ import fr.unilim.dut.spaceInvaders.utils.MissileException;
 
 public class Envahisseur extends Sprite {
 
-	private boolean directionAGauche;
+	private Direction direction;
 	
 	public Envahisseur(Dimension dimension, Position positionOrigine, int vitesse) {
 		super(positionOrigine,dimension,vitesse);
-		this.directionAGauche = false;
+		this.direction = Direction.DROITE;
 	}
 
-	public boolean directionAGauche() {
-		return this.directionAGauche;
+	public Direction direction() {
+		return this.direction;
 	}
 	
-	public void setDirectionAGauche(boolean b) {
-		this.directionAGauche=b;
+	public void setDirection(Direction direction) {
+		this.direction=direction;
 	}
 
 	public Missile tirerUnMissile(Dimension dimensionMissile, int vitesseMissile) {
