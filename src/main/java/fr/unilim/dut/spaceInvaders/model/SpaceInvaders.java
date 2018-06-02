@@ -210,7 +210,7 @@ public class SpaceInvaders implements Jeu {
 		creationAutomatiqueNouvelleVague();
 	}
 
-	private void creationAutomatiqueNouvelleVague() {
+	public void creationAutomatiqueNouvelleVague() {
 		if(!this.aUnEnvahisseur()) {
 			creerHordeEnvahisseur();
 			this.nombreVague++;
@@ -322,7 +322,7 @@ public class SpaceInvaders implements Jeu {
 	}
 
 
-	private void deplacerMissileEnvahisseur() {
+	public void deplacerMissileEnvahisseur() {
 		Iterator<Missile> iterator = this.missilesEnvahisseurs.iterator();
 
 		while (iterator.hasNext()) {

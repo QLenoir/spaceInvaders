@@ -1,6 +1,7 @@
 package fr.unilim.dut.spaceInvaders;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import org.junit.Before;
@@ -8,6 +9,7 @@ import org.junit.Test;
 
 import fr.unilim.dut.spaceInvaders.model.Collision;
 import fr.unilim.dut.spaceInvaders.model.Dimension;
+import fr.unilim.dut.spaceInvaders.model.Direction;
 import fr.unilim.dut.spaceInvaders.model.Envahisseur;
 import fr.unilim.dut.spaceInvaders.model.Missile;
 import fr.unilim.dut.spaceInvaders.model.Position;
@@ -426,7 +428,7 @@ public class SpaceInvadersTest {
 		spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(2,2),new Position(1,1), 1);
 		
 		for (Envahisseur envahisseur : this.spaceinvaders.envahisseurs()) {
-			envahisseur.setDirection(true);
+			envahisseur.setDirection(Direction.GAUCHE_ECRAN);
 		}
 
 		spaceinvaders.deplacerEnvahisseur();
@@ -564,7 +566,7 @@ public class SpaceInvadersTest {
 		spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(2,2),new Position(2,1), 1);
 		spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(2,2),new Position(5,1), 1);
 		for (Envahisseur envahisseur : spaceinvaders.envahisseurs()) {
-			envahisseur.setDirection(true);
+			envahisseur.setDirection(Direction.GAUCHE_ECRAN);
 		}
 		spaceinvaders.deplacerEnvahisseur();
 		spaceinvaders.deplacerEnvahisseur();
@@ -739,4 +741,77 @@ public class SpaceInvadersTest {
 				".....VVVVVVV...\n" + 
 				".....VVVVVVV...\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
 	}
+	
+	@Test
+	public void test_Missile_Envahisseur_Detruit_Vaisseau() {
+ 
+		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(7,2),new Position(5,9), 1);
+		
+		spaceinvaders.positionnerUneLigneEnvahisseur(new Dimension(1,1), 2, 15, 0, 1);
+		
+		spaceinvaders.tirerUnMissileEnvahisseur(new Dimension(1,1), spaceinvaders.envahisseurs().get(3), 1);
+		
+		spaceinvaders.deplacerMissileEnvahisseur();
+		spaceinvaders.deplacerMissileEnvahisseur();
+		spaceinvaders.deplacerMissileEnvahisseur();
+		spaceinvaders.deplacerMissileEnvahisseur();
+		spaceinvaders.deplacerMissileEnvahisseur();
+		spaceinvaders.deplacerMissileEnvahisseur();
+		spaceinvaders.deplacerMissileEnvahisseur();
+		
+		spaceinvaders.detecterAutomatiquementCollisions();
+		spaceinvaders.destructionAutomatiquementSprite();
+		
+		assertTrue(spaceinvaders.etreFini());
+		assertEquals("" +
+				"..E.E.E.E.E.E.E\n" + 
+				"...............\n" +
+				"...............\n" + 
+				"...............\n" +
+				"...............\n" +
+				"...............\n" + 
+				"...............\n" +
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
+	}
+	
+	@Test
+	public void test_Missile_Envahisseur_Detruit_Vaisseau_De_Cote() {
+ 
+		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(7,2),new Position(5,9), 1);
+		
+		spaceinvaders.positionnerUneLigneEnvahisseur(new Dimension(1,1), 2, 15, 0, 1);
+		
+		spaceinvaders.tirerUnMissileEnvahisseur(new Dimension(1,1), spaceinvaders.envahisseurs().get(0), 1);
+		
+		spaceinvaders.deplacerMissileEnvahisseur();
+		spaceinvaders.deplacerMissileEnvahisseur();
+		spaceinvaders.deplacerMissileEnvahisseur();
+		spaceinvaders.deplacerMissileEnvahisseur();
+		spaceinvaders.deplacerMissileEnvahisseur();
+		spaceinvaders.deplacerMissileEnvahisseur();
+		spaceinvaders.deplacerMissileEnvahisseur();
+		spaceinvaders.deplacerVaisseauVersLaGauche();
+		spaceinvaders.deplacerVaisseauVersLaGauche();
+		spaceinvaders.deplacerVaisseauVersLaGauche();
+		
+		spaceinvaders.detecterAutomatiquementCollisions();
+		spaceinvaders.destructionAutomatiquementSprite();
+		
+		
+		assertEquals("" +
+				"..E.E.E.E.E.E.E\n" + 
+				"...............\n" +
+				"...............\n" + 
+				"...............\n" +
+				"...............\n" +
+				"...............\n" + 
+				"...............\n" +
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
+		assertTrue(spaceinvaders.etreFini());
+	}
+	
 }
